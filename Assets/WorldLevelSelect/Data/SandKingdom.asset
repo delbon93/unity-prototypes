@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fbe4f91a6346994796771ec2c79c2be, type: 3}
+  m_Name: SandKingdom
+  m_EditorClassIdentifier: 
+  kingdomName: Sand Kingdom
+  previewImage: {fileID: 2800000, guid: c34ac3e294efa2e4e90373b701a9251d, type: 3}
+  locationOnGlobe: {x: 0.4572, y: 0.1929, z: 0.0635}
+  displayGlobeRotation: {x: -0.021676151, y: 0.81561345, z: 0.030619992, w: 0.57737964}
