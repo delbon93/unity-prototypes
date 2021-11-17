@@ -33,18 +33,19 @@ namespace WorldLevelSelect
             if (Input.GetKeyDown(KeyCode.RightArrow)) {
                 SelectionRight();
             }
+
+            if (Input.GetKeyDown(KeyCode.Space)) {
+                ConfirmSelection();
+                print("confirm");
+            }
+        }
+
+        private void ConfirmSelection () {
+            kingdomItemInfo[_selectedIndex].OnSelectedCallback.Invoke();
         }
 
 
-        private IEnumerator SetDataCoroutine () {
-            SetData();
-            yield return new WaitForSeconds(0.5f);
-            StartCoroutine(SetDataCoroutine());
-        }
-        
-
-        public void SetData () {
-            var rect = bar.rectTransform.rect;
+        private void SetData () {
             var barWidth = BarBaseWidth + ItemSpacing * (kingdomItemInfo.Count - 1);
             bar.rectTransform.sizeDelta = new Vector2(barWidth, bar.rectTransform.sizeDelta.y);
 

@@ -25,7 +25,8 @@ namespace WorldLevelSelect
                 // Location markers
                 var locationMarker = Instantiate(locationMarkerPrefab, transform);
                 locationMarker.name = $"Location_{itemInfo.KingdomNameNoWhitespace}";
-                locationMarker.transform.localPosition = itemInfo.LocationOnGlobe;
+                //locationMarker.transform.localPosition = itemInfo.LocationOnGlobe;
+                locationMarker.transform.localPosition = itemInfo.GetSurfaceNormal() * globeRadius;
                 var normal = (locationMarker.transform.position - transform.position).normalized;
                 locationMarker.transform.LookAt(locationMarker.transform.position + normal);
                 _locationMarkers.Add(locationMarker);

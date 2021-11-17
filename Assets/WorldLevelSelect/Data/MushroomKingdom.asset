@@ -15,4 +15,8 @@ MonoBehaviour:
   kingdomName: Mushroom Kingdom
   previewImage: {fileID: 2800000, guid: d0f0b7941e9bf474eb20756102b13030, type: 3}
   locationOnGlobe: {x: 0.0028, y: 0.1513, z: -0.4734}
-  displayGlobeRotation: {x: 0.06348635, y: 0.07395812, z: -0.0047178483, w: 0.99522734}
+  globeSurfaceCoordinates: {x: 40.4, y: -3.58}
+  displayGlobeRotation: {x: -0.11147215, y: 0.7627878, z: -0.0790947, w: 0.6320386}
+  onSelectedCallback:
+    m_PersistentCalls:
+      m_Calls: []

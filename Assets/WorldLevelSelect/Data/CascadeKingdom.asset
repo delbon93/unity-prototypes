@@ -15,4 +15,8 @@ MonoBehaviour:
   kingdomName: Cascade Kingdom
   previewImage: {fileID: 2800000, guid: 70450a0877274424998ffcb57c11b6fc, type: 3}
   locationOnGlobe: {x: 0.0374, y: 0.3643, z: -0.3398}
+  globeSurfaceCoordinates: {x: 43.09, y: -79.05}
   displayGlobeRotation: {x: -0.16398661, y: 0.11165072, z: 0.018683916, w: 0.9799457}
+  onSelectedCallback:
+    m_PersistentCalls:
+      m_Calls: []

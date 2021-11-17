@@ -440,7 +440,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e59612eeb0a3ba34eab0c60d3df672a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  globeRadius: 10
+  globeRadius: 0.5
   locationMarkerPrefab: {fileID: 5326483079349671374, guid: ec10a1efe2d41294fa0396ad743fb4cb, type: 3}
   rotationSpeed: 0.05
   smoothRotation: 1
@@ -910,7 +910,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2007301324}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &2007301326
 Camera:
   m_ObjectHideFlags: 0
