@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   kingdomName: Cap Kingdom
   previewImage: {fileID: 2800000, guid: 50bf07b1b76b6ab44b6ef6940a2745d5, type: 3}
-  locationOnGlobe: {x: -0.1793, y: 0.3008, z: -0.3591}
   globeSurfaceCoordinates: {x: 37.77, y: -122.43}
   displayGlobeRotation: {x: -0.09798343, y: -0.13410388, z: -0.013326242, w: 0.9860212}
   onSelectedCallback:

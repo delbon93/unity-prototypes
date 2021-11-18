@@ -11,10 +11,18 @@ namespace WorldLevelSelect
         [SerializeField] private LocationMarker locationMarkerPrefab;
         [SerializeField] private float rotationSpeed;
         [SerializeField] private bool smoothRotation;
+        [SerializeField] private float splineHeightBias;
+        [SerializeField] private float splineHeightPerDistanceScale;
+        
         
         private List<KingdomSelectItemInfo> _itemInfos;
         private List<LocationMarker> _locationMarkers;
         private IEnumerator _currentRotation;
+
+        private void Update () {
+            BuildLocationConnectionSplines();
+        }
+
 
         public void CreateGlobeLocations (List<KingdomSelectItemInfo> itemInfos) {
             _itemInfos = itemInfos;
@@ -25,43 +33,46 @@ namespace WorldLevelSelect
                 // Location markers
                 var locationMarker = Instantiate(locationMarkerPrefab, transform);
                 locationMarker.name = $"Location_{itemInfo.KingdomNameNoWhitespace}";
-                //locationMarker.transform.localPosition = itemInfo.LocationOnGlobe;
                 locationMarker.transform.localPosition = itemInfo.GetSurfaceNormal() * globeRadius;
                 var normal = (locationMarker.transform.position - transform.position).normalized;
                 locationMarker.transform.LookAt(locationMarker.transform.position + normal);
                 _locationMarkers.Add(locationMarker);
+            }
+            
+            BuildLocationConnectionSplines();
+        }
 
-                // Splines between location markers
-                if (i > 0) {
-                    var targetPoint = _locationMarkers[i - 1].transform.position;
-                    var midPointBase = (targetPoint + _locationMarkers[i].transform.position) / 2f;
-                    var midPointNormal = (midPointBase - transform.position);
-                    var midPointHeight = globeRadius - (midPointBase - transform.position).magnitude;
-                    var midPoint = midPointBase + midPointNormal.normalized * 0.3f * midPointHeight;
+        private void BuildLocationConnectionSplines () {
+            if (_locationMarkers.Count < 2)
+                return;
+            
+            for (var i = 1; i < _locationMarkers.Count; i++) {
+                var targetPoint = _locationMarkers[i - 1].transform.position;
+                var midPointBase = (targetPoint + _locationMarkers[i].transform.position) / 2f;
+                var midPointNormal = -(midPointBase - transform.position);
+                var midPointHeight = globeRadius - (midPointBase - transform.position).magnitude;
+                
+                // Increase height at greater distances to avoid clipping into the planet
+                var locationStraightLineDistance =  (targetPoint - _locationMarkers[i].transform.position).magnitude;
+                midPointHeight += splineHeightBias + splineHeightPerDistanceScale * locationStraightLineDistance;
+                
+                var midPoint = midPointBase + midPointNormal.normalized * midPointHeight;
                     
-                    locationMarker.SetSpline(midPoint, targetPoint);
-                }
+                _locationMarkers[i].SetSpline(midPoint, targetPoint);
             }
         }
 
 
-        public void RotateToShowLocation (int locationIndex) {
+        public void RotateToShowLocation (KingdomSelectItemInfo itemInfo) {
             if (smoothRotation) {
                 if (_currentRotation != null) {
                     StopCoroutine(_currentRotation);
                 }
 
-                _currentRotation = LerpRotationTo(_itemInfos[locationIndex].DisplayGlobeRotation);
+                _currentRotation = LerpRotationTo(itemInfo.DisplayGlobeRotation);
                 StartCoroutine(_currentRotation);
-            }
-            else
-                transform.rotation = _itemInfos[locationIndex].DisplayGlobeRotation;
-
-            for (var i = 0; i < _locationMarkers.Count; i++) {
-                if (i == locationIndex)
-                    _locationMarkers[i].StartParticleSystem();
-                else
-                    _locationMarkers[i].StopParticleSystem();
+            } else {
+                transform.rotation = itemInfo.DisplayGlobeRotation;
             }
         }
 
@@ -69,6 +80,7 @@ namespace WorldLevelSelect
             
             while (Quaternion.Angle(transform.rotation, targetRotation) > 0.1f) {
                 transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed);
+                BuildLocationConnectionSplines();
                 yield return null;
             }
 

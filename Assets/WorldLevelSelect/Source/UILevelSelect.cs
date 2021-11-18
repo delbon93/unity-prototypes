@@ -20,6 +20,8 @@ namespace WorldLevelSelect
 
         private int _selectedIndex = 0;
 
+        private KingdomSelectItemInfo SelectedItemInfo => kingdomItemInfo[_selectedIndex];
+
         private void Start () {
             worldSphere.CreateGlobeLocations(kingdomItemInfo);
             SetData();
@@ -36,12 +38,11 @@ namespace WorldLevelSelect
 
             if (Input.GetKeyDown(KeyCode.Space)) {
                 ConfirmSelection();
-                print("confirm");
             }
         }
 
         private void ConfirmSelection () {
-            kingdomItemInfo[_selectedIndex].OnSelectedCallback.Invoke();
+            SelectedItemInfo.OnSelectedCallback?.Invoke();
         }
 
 
@@ -54,17 +55,17 @@ namespace WorldLevelSelect
             }
 
             for (var index = 0; index < kingdomItemInfo.Count; index++) {
-                var dataPoint = kingdomItemInfo[index];
-                AddKingdomSelectItemInfo(index * ItemSpacing, dataPoint,
-                    index == _selectedIndex ? highlightItemPrefab : itemPrefab);
+                var itemInfo = kingdomItemInfo[index];
+                var uiItemPrefab = index == _selectedIndex ? highlightItemPrefab : itemPrefab;
+                AddKingdomSelectItemInfo(index * ItemSpacing, itemInfo, uiItemPrefab);
             }
             
             SetPreviewImage();
-            worldSphere.RotateToShowLocation(_selectedIndex);
+            worldSphere.RotateToShowLocation(SelectedItemInfo);
         }
 
         private void SetPreviewImage () {
-            previewImage.SetPreviewTexture(kingdomItemInfo[_selectedIndex].PreviewImage);
+            previewImage.SetPreviewTexture(SelectedItemInfo.PreviewImage);
         }
 
         private void AddKingdomSelectItemInfo (float offset, KingdomSelectItemInfo dataPoint, UILevelSelectItem prefab) {

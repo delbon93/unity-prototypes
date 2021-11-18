@@ -14,9 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   kingdomName: Mushroom Kingdom
   previewImage: {fileID: 2800000, guid: d0f0b7941e9bf474eb20756102b13030, type: 3}
-  locationOnGlobe: {x: 0.0028, y: 0.1513, z: -0.4734}
   globeSurfaceCoordinates: {x: 40.4, y: -3.58}
   displayGlobeRotation: {x: -0.11147215, y: 0.7627878, z: -0.0790947, w: 0.6320386}
   onSelectedCallback:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -2343136979101278787, guid: dbb4340141e31344197028ec28ffc189, type: 3}
+        m_TargetAssemblyTypeName: WorldLevelSelect.SceneLoader, WorldLevelSelect
+        m_MethodName: LoadScene
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

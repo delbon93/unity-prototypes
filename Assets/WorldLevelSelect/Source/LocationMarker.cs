@@ -30,6 +30,8 @@ namespace WorldLevelSelect
                 var vertex = t * t * coeff1 + t * coeff2 + coeff3;
                 vertices.Add(vertex);
             }
+            
+            vertices.Add(targetPoint);
 
             GetComponent<LineRenderer>().positionCount = vertices.Count;
             GetComponent<LineRenderer>().SetPositions(vertices.ToArray());
