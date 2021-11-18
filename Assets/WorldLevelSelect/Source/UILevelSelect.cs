@@ -70,6 +70,7 @@ namespace WorldLevelSelect
 
         private void AddKingdomSelectItemInfo (float offset, KingdomSelectItemInfo dataPoint, UILevelSelectItem prefab) {
             var item = Instantiate(prefab, items);
+            item.Locked = (dataPoint.OnSelectedCallback.GetPersistentEventCount() == 0);
             var rectTransform = item.GetComponent<RectTransform>();
             rectTransform.anchoredPosition = new Vector2(rectTransform.anchoredPosition.x + offset, 0);
             item.ApplyData(dataPoint);
