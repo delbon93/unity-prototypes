@@ -1,9 +1,7 @@
 {
-    "name": "WorldLevelSelect",
-    "rootNamespace": "WorldLevelSelect",
-    "references": [
-        "GUID:3249bd612ad74922b39d965560fb2864"
-    ],
+    "name": "Util",
+    "rootNamespace": "Util",
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

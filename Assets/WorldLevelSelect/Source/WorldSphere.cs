@@ -19,11 +19,6 @@ namespace WorldLevelSelect
         private List<LocationMarker> _locationMarkers;
         private IEnumerator _currentRotation;
 
-        private void Update () {
-            BuildLocationConnectionSplines();
-        }
-
-
         public void CreateGlobeLocations (List<KingdomSelectItemInfo> itemInfos) {
             _itemInfos = itemInfos;
             _locationMarkers = new List<LocationMarker>();
