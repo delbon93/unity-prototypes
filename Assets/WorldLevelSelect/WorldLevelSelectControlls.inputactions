@@ -1,0 +1,143 @@
+{
+    "name": "WorldLevelSelectControlls",
+    "maps": [
+        {
+            "name": "UI",
+            "id": "140f746e-a443-435e-a174-195110aa69f0",
+            "actions": [
+                {
+                    "name": "UILeft",
+                    "type": "Button",
+                    "id": "c8de618e-831c-4f85-a030-853e8d1de3ef",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "UIRight",
+                    "type": "Button",
+                    "id": "1b3b156d-98a1-4b93-b250-70d6bb84049d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "UIConfirm",
+                    "type": "Button",
+                    "id": "460049d4-e301-4669-b64e-0b7f006375a7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "b47fc5cd-badc-43da-b24f-46bd42dc3306",
+                    "path": "<Gamepad>/dpad/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "WorldLevelSelectControllScheme",
+                    "action": "UILeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1cb4229f-2fcd-457f-89b0-659fc7958c78",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "WorldLevelSelectControllScheme",
+                    "action": "UILeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "989901fe-ae6d-414b-bc84-9f8bcffb826d",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "WorldLevelSelectControllScheme",
+                    "action": "UILeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d1154751-e126-4d18-9383-69ba36384257",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "WorldLevelSelectControllScheme",
+                    "action": "UIConfirm",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5c98ae8c-216a-48e2-a903-a5bd59352d3b",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "WorldLevelSelectControllScheme",
+                    "action": "UIConfirm",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a4c51ffb-9be1-4b16-967d-f09852e01ec0",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "WorldLevelSelectControllScheme",
+                    "action": "UIRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3b1a5386-8b38-4c96-8808-8bacb550fbac",
+                    "path": "<Gamepad>/dpad/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "WorldLevelSelectControllScheme",
+                    "action": "UIRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "61a77297-98ca-48f0-bc6c-97131dc28e4e",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "WorldLevelSelectControllScheme",
+                    "action": "UIRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "WorldLevelSelectControllScheme",
+            "bindingGroup": "WorldLevelSelectControllScheme",
+            "devices": [
+                {
+                    "devicePath": "<XInputController>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}

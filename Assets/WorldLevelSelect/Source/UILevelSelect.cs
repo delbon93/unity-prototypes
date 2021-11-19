@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 namespace WorldLevelSelect
@@ -26,25 +27,6 @@ namespace WorldLevelSelect
             worldSphere.CreateGlobeLocations(kingdomItemInfo);
             SetData();
         }
-
-        private void Update () {
-            if (Input.GetKeyDown(KeyCode.LeftArrow)) {
-                SelectionLeft();
-            }
-
-            if (Input.GetKeyDown(KeyCode.RightArrow)) {
-                SelectionRight();
-            }
-
-            if (Input.GetKeyDown(KeyCode.Space)) {
-                ConfirmSelection();
-            }
-        }
-
-        private void ConfirmSelection () {
-            SelectedItemInfo.OnSelectedCallback?.Invoke();
-        }
-
 
         private void SetData () {
             var barWidth = BarBaseWidth + ItemSpacing * (kingdomItemInfo.Count - 1);
@@ -76,15 +58,24 @@ namespace WorldLevelSelect
             item.ApplyData(dataPoint);
         }
 
-        private void SelectionLeft () {
+        public void OnSelectionLeft (InputAction.CallbackContext context) {
+            if (!context.performed) return;
+            
             _selectedIndex = _selectedIndex == 0 ? kingdomItemInfo.Count - 1 : _selectedIndex - 1;
             SetData();
         }
 
-        private void SelectionRight () {
+        public void OnSelectionRight (InputAction.CallbackContext context) {
+            if (!context.performed) return;
+
             _selectedIndex = (_selectedIndex + 1) % kingdomItemInfo.Count;
             SetData();
         }
         
+        public void OnConfirmSelection (InputAction.CallbackContext context) {
+            if (!context.performed) return;
+
+            SelectedItemInfo.OnSelectedCallback?.Invoke();
+        }
     }
 }
