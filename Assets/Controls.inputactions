@@ -1,5 +1,5 @@
 {
-    "name": "WorldLevelSelectControlls",
+    "name": "Controls",
     "maps": [
         {
             "name": "UI",
@@ -116,6 +116,88 @@
                     "processors": "",
                     "groups": "WorldLevelSelectControllScheme",
                     "action": "UIRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "2DMovement",
+            "id": "76eb3fa3-d698-4a19-9bd5-402fbf7cb1ed",
+            "actions": [
+                {
+                    "name": "Movement",
+                    "type": "Value",
+                    "id": "4968de9b-f2bc-4db3-a3cb-4609f4203e24",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "2D Vector",
+                    "id": "f35de255-caaa-43d4-a52f-10b43e79dc28",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "1257d0f2-d16f-46ae-9649-e529c63f728b",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "a952a06f-3451-4bd9-9928-3c77eaad2e43",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "63af4e7e-c302-4fc0-b94b-436a76e5cd64",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "4e716a6e-c37e-40fc-aa20-a638a7fdb453",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "87888518-2919-43b1-a85a-821d297659df",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "StickDeadzone(max=1)",
+                    "groups": "",
+                    "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
