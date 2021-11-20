@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Util;
 
 namespace WorldLevelSelect
 {
@@ -18,10 +19,10 @@ namespace WorldLevelSelect
         private List<KingdomSelectItemInfo> _itemInfos;
         private List<LocationMarker> _loadedLocationMarkers;
         private IEnumerator _currentRotationCoroutine;
-        private Vector3 _initialEulerRotation;
+        private ConsistentCoroutine _rotationCoroutine;
 
         private void Awake () {
-            _initialEulerRotation = transform.rotation.eulerAngles;
+            _rotationCoroutine = new ConsistentCoroutine(this);
         }
 
         public void CreateGlobeLocations (List<KingdomSelectItemInfo> itemInfos) {
@@ -63,12 +64,7 @@ namespace WorldLevelSelect
 
         public void RotateToShowLocation (KingdomSelectItemInfo itemInfo) {
             if (smoothRotation) {
-                if (_currentRotationCoroutine != null) {
-                    StopCoroutine(_currentRotationCoroutine);
-                }
-
-                _currentRotationCoroutine = LerpRotationTo(itemInfo.DisplayGlobeRotation);
-                StartCoroutine(_currentRotationCoroutine);
+                _rotationCoroutine.StartAndInterruptIfRunning(LerpRotationTo(itemInfo.DisplayGlobeRotation));
             } else {
                 transform.rotation = itemInfo.DisplayGlobeRotation;
             }
@@ -77,7 +73,12 @@ namespace WorldLevelSelect
         private IEnumerator LerpRotationTo (Quaternion targetRotation) {
             while (Quaternion.Angle(transform.rotation, targetRotation) > 0.1f) {
                 transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed);
+                
+                // TODO
+                /* Rebuilding splines every frame is not very efficient, but currently necessary to prevent
+                   prevent them being stuck in world space when the globe rotates. */
                 BuildLocationConnectionSplines();
+                
                 yield return null;
             }
 
