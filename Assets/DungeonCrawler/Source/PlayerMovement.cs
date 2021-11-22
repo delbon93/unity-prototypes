@@ -48,6 +48,7 @@ namespace DungeonCrawler
         }
 
         private void SpawnProjectile () {
+            GetComponent<AudioSource>().Play();
             var projectileData = new ProjectileData {
                 initialVelocity = _fireProjectileVector.normalized * projectileSpeed,
                 size = 2,
