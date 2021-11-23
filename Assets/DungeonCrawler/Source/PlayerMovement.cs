@@ -13,10 +13,9 @@ namespace DungeonCrawler
         [SerializeField] private float moveSpeed;
         [SerializeField] private float fireDelay;
         [SerializeField] private float projectileSpeed;
-        
-        
         [SerializeField] private SpriteRenderer sprite;
 
+        private static readonly int Hurt = Animator.StringToHash("hurt");
         private Rigidbody2D _rigidbody;
         private ProjectileSpawner _projectileSpawner;
         private Vector2 _movementVector;
@@ -52,7 +51,9 @@ namespace DungeonCrawler
             var projectileData = new ProjectileData {
                 initialVelocity = _fireProjectileVector.normalized * projectileSpeed,
                 size = 2,
-                originGameObject = gameObject
+                originGameObject = gameObject,
+                prefab = _projectileSpawner.ProjectilePrefab,
+                color = Color.magenta
             };
             _projectileSpawner.SpawnProjectile(projectileData);
         }
@@ -63,6 +64,10 @@ namespace DungeonCrawler
 
         public void OnFireProjectile (InputAction.CallbackContext context) {
             _fireProjectileVector = context.ReadValue<Vector2>();
+        }
+
+        public void OnReceiveDamage () {
+            GetComponent<Animator>().SetTrigger(Hurt);
         }
     }
 }
