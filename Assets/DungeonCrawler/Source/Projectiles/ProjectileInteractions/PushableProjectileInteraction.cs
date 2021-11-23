@@ -21,7 +21,7 @@ namespace DungeonCrawler {
             if (reflectProjectiles) {
                 var projectileData = projectile.ProjectileData;
                 var projectileSpeed = projectileData.initialVelocity.magnitude;
-                projectileData.initialVelocity = -forceDirection * projectileSpeed;
+                projectileData.initialVelocity = -forceDirection * projectileSpeed * reflectedProjectileSpeedFactor;
                 projectileData.originGameObject = gameObject;
                 _spawner.SpawnProjectile(projectileData.prefab, projectileData);
             }
