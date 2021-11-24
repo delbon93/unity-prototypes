@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Codice.Client.BaseCommands.Annotate;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -18,6 +19,12 @@ namespace DungeonCrawler
 
         private void Awake () {
             _spawner = GetComponent<ProjectileSpawner>();
+        }
+
+        private void Start () {
+        }
+
+        private void OnEnable () {
             StartCoroutine(SpawnProjectileAfterDelay());
         }
 

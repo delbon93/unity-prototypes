@@ -58,7 +58,7 @@ namespace DungeonCrawler
         private void HandleProjectileInteraction (GameObject hitObject) {
             var interaction = hitObject.GetComponent<AProjectileInteraction>();
             if (interaction != null)
-                interaction.OnReceiveProjectile(this);
+                interaction.ReceiveProjectile(this);
         }
 
         private void DestroyParticle () {

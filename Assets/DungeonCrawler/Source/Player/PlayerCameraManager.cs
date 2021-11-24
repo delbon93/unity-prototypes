@@ -12,7 +12,6 @@ namespace DungeonCrawler
         [SerializeField] private Camera playerCamera;
         [SerializeField] private float cameraMoveSpeed;
         
-
         private ConsistentCoroutine _moveCameraCoroutine;
 
         private void Awake () {
@@ -28,9 +27,14 @@ namespace DungeonCrawler
         private IEnumerator LerpCameraTowardsTargetCoroutine (Vector3 target) {
             while ((playerCamera.transform.position - target).magnitude > 0.05f) {
                 var nextPosition = Vector3.Lerp(playerCamera.transform.position, target, cameraMoveSpeed);
-                playerCamera.transform.position = nextPosition;
+                PointCameraAtAndKeepZ(nextPosition);
                 yield return null;
             }
+        }
+
+        private void PointCameraAtAndKeepZ (Vector3 position) {
+            position.z = playerCamera.transform.position.z;
+            playerCamera.transform.position = position;
         }
     }
 }

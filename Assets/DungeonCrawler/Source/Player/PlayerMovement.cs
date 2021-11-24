@@ -21,6 +21,8 @@ namespace DungeonCrawler
         private Vector2 _movementVector;
         private Vector2 _fireProjectileVector;
 
+        public bool InputEnabled { get; set; } = true;
+
         private void Awake () {
             _rigidbody = GetComponent<Rigidbody2D>();
             _projectileSpawner = GetComponent<ProjectileSpawner>();
@@ -28,6 +30,8 @@ namespace DungeonCrawler
         }
         
         private void FixedUpdate () {
+            if (!InputEnabled) return;
+            
             _rigidbody.AddForce(_movementVector * moveSpeed);
             GetComponent<Animator>().SetFloat(Speed, _movementVector.magnitude);
             if (sprite.flipX && _movementVector.x > 0) sprite.flipX = false;
@@ -36,7 +40,7 @@ namespace DungeonCrawler
 
         private IEnumerator FireProjectileCoroutine () {
             for (;;) {
-                if (_fireProjectileVector.magnitude < Mathf.Epsilon) {
+                if (_fireProjectileVector.magnitude < Mathf.Epsilon || !InputEnabled) {
                     yield return new WaitForEndOfFrame();
                 } 
                 else {

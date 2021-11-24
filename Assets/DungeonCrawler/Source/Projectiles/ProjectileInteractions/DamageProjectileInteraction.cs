@@ -8,7 +8,7 @@ namespace DungeonCrawler {
         [Space(20)]
         [SerializeField] private UnityEvent onHealthReachesZero;
         
-        public override void OnReceiveProjectile (AProjectile projectile) {
+        protected override void OnReceiveProjectile (AProjectile projectile) {
             healthBar.HealthPoints -= 1;
             if (healthBar.HealthPoints == 0)
                 onHealthReachesZero?.Invoke();

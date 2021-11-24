@@ -3,7 +3,14 @@
 namespace DungeonCrawler {
     public abstract class AProjectileInteraction : MonoBehaviour {
 
-        public abstract void OnReceiveProjectile (AProjectile projectile);
+        public bool IgnoreProjectiles { get; set; } = false;
+
+        public void ReceiveProjectile (AProjectile projectile) {
+            if (!IgnoreProjectiles)
+                OnReceiveProjectile(projectile);
+        }
+        
+        protected abstract void OnReceiveProjectile (AProjectile projectile);
 
     }
 }

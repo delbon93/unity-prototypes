@@ -42,10 +42,14 @@ namespace DungeonCrawler
             }
         }
 
-        private void Awake () {
-            _showAndThenFadeOutCoroutine = new ConsistentCoroutine(this);
-            GenerateLayout();
+        public void SetFullHealth () {
             HealthPoints = maxHealthPoints;
+        }
+        
+        private void Awake () {
+            GenerateLayout();
+            SetFullHealth();
+            _showAndThenFadeOutCoroutine = new ConsistentCoroutine(this);
             SetAllSegmentsSpriteAlpha(0.0f);
         }
 
@@ -78,7 +82,7 @@ namespace DungeonCrawler
                     _segments[i].SetEmpty();
             }
 
-            _showAndThenFadeOutCoroutine.StartAndInterruptIfRunning(ShowAndThenFadeOutCoroutine());
+            _showAndThenFadeOutCoroutine?.StartAndInterruptIfRunning(ShowAndThenFadeOutCoroutine());
         }
 
         private IEnumerator ShowAndThenFadeOutCoroutine () {

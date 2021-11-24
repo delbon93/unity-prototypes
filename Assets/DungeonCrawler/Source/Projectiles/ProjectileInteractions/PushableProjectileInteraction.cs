@@ -14,7 +14,7 @@ namespace DungeonCrawler {
             _spawner = GetComponent<ProjectileSpawner>();
         }
 
-        public override void OnReceiveProjectile (AProjectile projectile) {
+        protected override void OnReceiveProjectile (AProjectile projectile) {
             var forceDirection = transform.position - projectile.transform.position;
             GetComponent<Rigidbody2D>().AddForce(forceDirection * pushForce);
 
