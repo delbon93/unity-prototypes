@@ -35,6 +35,7 @@ namespace DungeonCrawler
 
             var interaction = _allowedInteractions[0];
             _allowedInteractions.RemoveAt(0);
+            UpdateInteractionHintVisible();
             interaction.OnPlayerInteraction();
         }
     }

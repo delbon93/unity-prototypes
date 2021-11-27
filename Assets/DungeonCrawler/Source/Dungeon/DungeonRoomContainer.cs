@@ -19,6 +19,7 @@ namespace DungeonCrawler
             SetActiveRoom(initiallyLoadedRoom.gameObject);
             player.transform.position = initiallyLoadedRoom.PlayerSpawnPosition;
             FindObjectOfType<ProjectileContainer>()?.ClearAllProjectiles();
+            FindObjectOfType<PlayerCameraManager>()?.SetFocusOnRoom(initiallyLoadedRoom);
         }
 
         public void SetActiveRoom (GameObject roomGameObject) {

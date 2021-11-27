@@ -19,7 +19,12 @@ namespace DungeonCrawler
             SetRoomObjectsActiveStatus(true);
         }
 
-        public void Unload () {
+        public void Unload (float timeDelayBeforeUnloading = 0.0f) {
+            StartCoroutine(UnloadCoroutine(timeDelayBeforeUnloading));
+        }
+
+        private IEnumerator UnloadCoroutine (float timeDelayBeforeUnloading) {
+            yield return new WaitForSeconds(timeDelayBeforeUnloading);
             SetRoomObjectsActiveStatus(false);
         }
 

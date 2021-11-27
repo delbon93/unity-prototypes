@@ -26,7 +26,7 @@ namespace DungeonCrawler
 
         private IEnumerator LerpCameraTowardsTargetCoroutine (Vector3 target) {
             while ((playerCamera.transform.position - target).magnitude > 0.05f) {
-                var nextPosition = Vector3.Lerp(playerCamera.transform.position, target, cameraMoveSpeed);
+                var nextPosition = Vector3.Lerp(playerCamera.transform.position, target, cameraMoveSpeed * Time.deltaTime);
                 PointCameraAtAndKeepZ(nextPosition);
                 yield return null;
             }

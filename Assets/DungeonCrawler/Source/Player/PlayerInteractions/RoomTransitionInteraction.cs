@@ -15,7 +15,7 @@ namespace DungeonCrawler {
         }
         
         public override void OnPlayerInteraction () {
-            _from.DungeonRoom.Unload();
+            _from.DungeonRoom.Unload(1.0f);
             _to.DungeonRoom.Load();
             _player.transform.position = _to.SpawnPointPosition;
             _player.GetComponent<PlayerCameraManager>()?.SetFocusOnRoom(_to.DungeonRoom);

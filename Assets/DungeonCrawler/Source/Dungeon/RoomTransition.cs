@@ -7,7 +7,7 @@ using UnityEngine.UI;
 namespace DungeonCrawler
 {
     [RequireComponent(typeof(Collider2D))]
-    public class RoomTransition : MonoBehaviour
+    public class RoomTransition : APlayerInteractionProvider
     {
         [SerializeField] private Transform entranceSpawnPoint;
         [SerializeField] private RoomTransition targetTransition;
@@ -17,23 +17,14 @@ namespace DungeonCrawler
         public DungeonRoom DungeonRoom => GetComponentInParent<DungeonRoom>();
         public Vector3 SpawnPointPosition => entranceSpawnPoint.transform.position;
 
-        private void OnTriggerEnter2D (Collider2D other) {
-            if (TryGetPlayerInteractionHandler(other.gameObject, out var playerInteractionHandler)) {
-                _roomTransitionInteraction = new RoomTransitionInteraction(this, targetTransition, other.gameObject);
-                playerInteractionHandler.AllowInteraction(_roomTransitionInteraction);
-            }
+        protected override void OnPlayerEntersTrigger (PlayerInteractionHandler interactionHandler) {
+            _roomTransitionInteraction = new RoomTransitionInteraction(this, targetTransition, interactionHandler.gameObject);
+            interactionHandler.AllowInteraction(_roomTransitionInteraction);
         }
 
-        private void OnTriggerExit2D (Collider2D other) {
-            if (TryGetPlayerInteractionHandler(other.gameObject, out var playerInteractionHandler)) {
-                playerInteractionHandler.DisallowInteraction(_roomTransitionInteraction);
-            }
+        protected override void OnPlayerLeavesTrigger (PlayerInteractionHandler interactionHandler) {
+            interactionHandler.DisallowInteraction(_roomTransitionInteraction);
         }
 
-        private static bool TryGetPlayerInteractionHandler (GameObject playerGameObject, out PlayerInteractionHandler playerInteractionHandler) {
-            playerInteractionHandler = playerGameObject.GetComponent<PlayerInteractionHandler>();
-            return playerInteractionHandler != null;
-        }
-        
     }
 }
