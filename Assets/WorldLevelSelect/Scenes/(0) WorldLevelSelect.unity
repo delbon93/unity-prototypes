@@ -950,10 +950,6 @@ MonoBehaviour:
   highlightItemPrefab: {fileID: 2702771228675543649, guid: 61b72311e79ade54c87196354ebf7413, type: 3}
   kingdomItemInfo:
   - {fileID: 11400000, guid: 351d00c6676e78d4fb9d431d7c35bc2c, type: 2}
-  - {fileID: 11400000, guid: decaf6b08c8a3e14abf8b8cc13a1f3ba, type: 2}
-  - {fileID: 11400000, guid: 548456d00881b6f469f2745cd2e2b24e, type: 2}
-  - {fileID: 11400000, guid: cd11645094e9e984db3bd82e9beedfc2, type: 2}
-  - {fileID: 11400000, guid: 44704e25986282b42a9a2f685468d65a, type: 2}
   previewImage: {fileID: 180910497}
   worldSphere: {fileID: 765646272}
 --- !u!1 &1553247090
