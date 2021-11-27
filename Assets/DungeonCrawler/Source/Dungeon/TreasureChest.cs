@@ -8,7 +8,6 @@ namespace DungeonCrawler
     [RequireComponent(typeof(TreasureChestInteractionProvider))]
     public class TreasureChest : MonoBehaviour
     {
-
         [SerializeField] private Sprite closedChestSprite;
         [SerializeField] private Sprite openChestSprite;
 

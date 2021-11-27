@@ -45,15 +45,15 @@ namespace DungeonCrawler
                     glowingEyesParticleSystem.Clear();
                 }
                 
-                var projectileData = new ProjectileData() {
-                    color = Color.cyan,
-                    prefab = _spawner.ProjectilePrefab,
-                    initialVelocity = velocity,
-                    originGameObject = gameObject,
-                    size = 1.5f
+                var projectileAttributes = new ProjectileAttributes() {
+                    Color = Color.cyan,
+                    Prefab = _spawner.ProjectilePrefab,
+                    InitialVelocity = velocity,
+                    OriginGameObject = gameObject,
+                    Size = 1.5f
                 };
                 
-                _spawner.SpawnProjectile(projectileData);
+                _spawner.SpawnProjectile(projectileAttributes);
             }
         }
 
@@ -77,7 +77,7 @@ namespace DungeonCrawler
         
 #if UNITY_EDITOR
 
-        private void OnDrawGizmos () {
+        private void OnDrawGizmosSelected () {
             Gizmos.DrawWireSphere(transform.position, maxDistanceToFireAtPlayer);
         }
 

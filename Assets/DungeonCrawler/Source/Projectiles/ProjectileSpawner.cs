@@ -17,14 +17,14 @@ namespace DungeonCrawler
             _projectileContainer = GameObject.FindGameObjectWithTag("ProjectileContainer").transform;
         }
 
-        public void SpawnProjectile (ProjectileData projectileData) {
-            SpawnProjectile(projectilePrefab, projectileData);
+        public void SpawnProjectile (ProjectileAttributes projectileAttributes) {
+            SpawnProjectileFromPrefab(projectilePrefab, projectileAttributes);
         }
 
-        public void SpawnProjectile (AProjectile prefab, ProjectileData projectileData) {
+        public void SpawnProjectileFromPrefab (AProjectile prefab, ProjectileAttributes projectileAttributes) {
             var projectile = Instantiate(prefab, _projectileContainer);
             projectile.transform.position = transform.position;
-            projectileData.ImprintOntoProjectile(projectile);
+            projectileAttributes.ApplyToProjectileInstance(projectile);
         }
 
     }

@@ -10,7 +10,7 @@ namespace DungeonCrawler {
         [SerializeField] private UnityEvent onBeforeDeath;
         [SerializeField] private UnityEvent onAfterDeath;
         
-        private static readonly int Die = Animator.StringToHash("die");
+        private static readonly int DieParameter = Animator.StringToHash("die");
 
         public void OnPlayerDeath () {
             StartCoroutine(PlayerDeathAnimationCoroutine());
@@ -22,7 +22,7 @@ namespace DungeonCrawler {
             
             onBeforeDeath?.Invoke();
             
-            GetComponent<Animator>().SetTrigger(Die);
+            GetComponent<Animator>().SetTrigger(DieParameter);
             yield return new WaitForSeconds(4f);
             
             onAfterDeath?.Invoke();

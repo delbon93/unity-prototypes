@@ -9,20 +9,16 @@ namespace DungeonCrawler
     {
         [SerializeField] private SpriteRenderer buttonHintSprite;
 
-        private List<APlayerInteraction> _allowedInteractions = new List<APlayerInteraction>();
+        private readonly List<APlayerInteraction> _allowedInteractions = new List<APlayerInteraction>();
 
         public void AllowInteraction (APlayerInteraction interaction) {
             _allowedInteractions.Add(interaction);
-            UpdateInteractionHintVisible();
+            UpdateInteractionHintVisibility();
         }
 
         public void DisallowInteraction (APlayerInteraction interaction) {
             _allowedInteractions.Remove(interaction);
-            UpdateInteractionHintVisible();
-        }
-        
-        private void UpdateInteractionHintVisible () {
-            buttonHintSprite.enabled = _allowedInteractions.Count > 0;
+            UpdateInteractionHintVisibility();
         }
 
         public void OnPlayerInteractionInput (InputAction.CallbackContext context) {
@@ -35,8 +31,12 @@ namespace DungeonCrawler
 
             var interaction = _allowedInteractions[0];
             _allowedInteractions.RemoveAt(0);
-            UpdateInteractionHintVisible();
+            UpdateInteractionHintVisibility();
             interaction.OnPlayerInteraction();
+        }
+        
+        private void UpdateInteractionHintVisibility () {
+            buttonHintSprite.enabled = _allowedInteractions.Count > 0;
         }
     }
 }

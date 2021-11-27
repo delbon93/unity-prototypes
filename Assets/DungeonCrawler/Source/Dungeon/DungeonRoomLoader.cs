@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace DungeonCrawler
 {
-    public class DungeonRoomContainer : MonoBehaviour
+    public class DungeonRoomLoader : MonoBehaviour
     {
 
         [SerializeField] private DungeonRoom initiallyLoadedRoom;
@@ -16,18 +16,18 @@ namespace DungeonCrawler
         }
 
         public void ResetDungeon () {
-            SetActiveRoom(initiallyLoadedRoom.gameObject);
+            SetActiveRoom(initiallyLoadedRoom);
             player.transform.position = initiallyLoadedRoom.PlayerSpawnPosition;
             FindObjectOfType<ProjectileContainer>()?.ClearAllProjectiles();
             FindObjectOfType<PlayerCameraManager>()?.SetFocusOnRoom(initiallyLoadedRoom);
         }
 
-        public void SetActiveRoom (GameObject roomGameObject) {
+        private void SetActiveRoom (DungeonRoom room) {
             foreach (Transform child in transform) {
                 var dungeonRoom = child.GetComponent<DungeonRoom>();
                 if (dungeonRoom == null) continue;
                 
-                if (dungeonRoom.gameObject == roomGameObject) {
+                if (dungeonRoom.gameObject == room.gameObject) {
                     dungeonRoom.Load();
                 }
                 else {

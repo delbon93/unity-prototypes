@@ -1,9 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+using System.Linq;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace DungeonCrawler
 {
@@ -13,11 +9,11 @@ namespace DungeonCrawler
         [SerializeField] protected ParticleSystem onDestroyParticleSystem;
         [SerializeField] protected ParticleSystem trailParticleSystem;
 
-        public ProjectileData ProjectileData { get; set; }
+        public ProjectileAttributes ProjectileAttributes { get; set; }
 
         protected abstract bool AutomaticallyDestroyOnHit { get; }
         protected abstract bool ShowTrailParticlesOnStart { get; }
-
+        
 
         private void Start () {
             if (ShowTrailParticlesOnStart)
@@ -25,16 +21,16 @@ namespace DungeonCrawler
         }
 
         private void OnTriggerEnter2D (Collider2D other) {
-            if (other.gameObject == ProjectileData.originGameObject) return;
+            if (other.gameObject == ProjectileAttributes.OriginGameObject) return;
 
-            OnBeforeParticleHit(); // abstract
+            OnBeforeParticleHit(); // template method
             StopAndHideProjectile();
             PlayProjectileHitSound();
-            OnParticleHit(other.gameObject); // abstract
-            HandleProjectileInteraction(other.gameObject);
-            OnAfterParticleCollision(); // abstract
+            OnParticleHit(other.gameObject); // template method
+            HandleProjectileInteractionsInOrder(other.gameObject);
+            OnAfterParticleCollision(); // template method
             if (AutomaticallyDestroyOnHit)
-                DestroyParticle();
+                DestroyParticleAfterParticlesFinished();
         }
 
         protected abstract void OnBeforeParticleHit ();
@@ -49,19 +45,17 @@ namespace DungeonCrawler
         }
 
         private void PlayProjectileHitSound () {
-            var audioSource = GetComponent<AudioSource>();
-            if (audioSource == null) return;
-            
-            audioSource.Play();
+            GetComponent<AudioSource>().Play();
         }
 
-        private void HandleProjectileInteraction (GameObject hitObject) {
-            var interaction = hitObject.GetComponent<AProjectileInteraction>();
-            if (interaction != null)
-                interaction.ReceiveProjectile(this);
+        private void HandleProjectileInteractionsInOrder (GameObject hitObject) {
+            var interactions = hitObject.GetComponents<AProjectileInteraction>().ToList();
+            foreach (var projectileInteraction in interactions.OrderBy(i => i.InteractionPriority)) {
+                projectileInteraction.ReceiveProjectile(this);
+            }
         }
 
-        private void DestroyParticle () {
+        private void DestroyParticleAfterParticlesFinished () {
             var destroyDelay = 0f;
             if (onDestroyParticleSystem != null) {
                 onDestroyParticleSystem.Play();

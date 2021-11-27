@@ -8,16 +8,19 @@ namespace DungeonCrawler
 {
     public class PlayerMovement : MonoBehaviour
     {
-        private static readonly int Speed = Animator.StringToHash("speed");
+        private static readonly int SpeedParameter = Animator.StringToHash("speed");
+        private static readonly int HurtParameter = Animator.StringToHash("hurt");
         
         [SerializeField] private float moveSpeed;
         [SerializeField] private float fireDelay;
         [SerializeField] private float projectileSpeed;
         [SerializeField] private SpriteRenderer sprite;
 
-        private static readonly int Hurt = Animator.StringToHash("hurt");
         private Rigidbody2D _rigidbody;
         private ProjectileSpawner _projectileSpawner;
+        private Animator _animator;
+        private AudioSource _audioSource;
+        
         private Vector2 _movementVector;
         private Vector2 _fireProjectileVector;
 
@@ -26,6 +29,8 @@ namespace DungeonCrawler
         private void Awake () {
             _rigidbody = GetComponent<Rigidbody2D>();
             _projectileSpawner = GetComponent<ProjectileSpawner>();
+            _animator = GetComponent<Animator>();
+            _audioSource = GetComponent<AudioSource>();
             StartCoroutine(FireProjectileCoroutine());
         }
         
@@ -33,7 +38,7 @@ namespace DungeonCrawler
             if (!InputEnabled) return;
             
             _rigidbody.AddForce(_movementVector * moveSpeed);
-            GetComponent<Animator>().SetFloat(Speed, _movementVector.magnitude);
+            _animator.SetFloat(SpeedParameter, _movementVector.magnitude);
             if (sprite.flipX && _movementVector.x > 0) sprite.flipX = false;
             if (!sprite.flipX && _movementVector.x < 0) sprite.flipX = true;
         }
@@ -51,15 +56,15 @@ namespace DungeonCrawler
         }
 
         private void SpawnProjectile () {
-            GetComponent<AudioSource>().Play();
-            var projectileData = new ProjectileData {
-                initialVelocity = _fireProjectileVector.normalized * projectileSpeed,
-                size = 2,
-                originGameObject = gameObject,
-                prefab = _projectileSpawner.ProjectilePrefab,
-                color = Color.magenta
+            _audioSource.Play();
+            var projectileAttributes = new ProjectileAttributes {
+                InitialVelocity = _fireProjectileVector.normalized * projectileSpeed,
+                Size = 2,
+                OriginGameObject = gameObject,
+                Prefab = _projectileSpawner.ProjectilePrefab,
+                Color = Color.magenta
             };
-            _projectileSpawner.SpawnProjectile(projectileData);
+            _projectileSpawner.SpawnProjectile(projectileAttributes);
         }
 
         public void OnMove (InputAction.CallbackContext context) {
@@ -71,7 +76,7 @@ namespace DungeonCrawler
         }
 
         public void OnReceiveDamage () {
-            GetComponent<Animator>().SetTrigger(Hurt);
+            _animator.SetTrigger(HurtParameter);
         }
     }
 }

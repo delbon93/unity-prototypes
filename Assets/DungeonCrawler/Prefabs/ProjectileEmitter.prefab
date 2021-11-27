@@ -4939,7 +4939,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 106cd6d531dc14b4abac8adcf68b725a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 5506168855135979381, guid: 182f670d8c7982b41898866cefcc194d, type: 3}
+  projectilePrefab: {fileID: 5506168855135979381, guid: 0cd57f5574209c74ca82413b2eef2479, type: 3}
 --- !u!212 &7921579022964670373
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5036,6 +5036,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6200aef648944c284377eb4447d0f59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactionPriority: 0
   healthBar: {fileID: 6004977492638614587}
   onHealthReachesZero:
     m_PersistentCalls:

@@ -4,9 +4,9 @@ using UnityEngine;
 namespace DungeonCrawler {
     public class RoomTransitionInteraction : APlayerInteraction {
 
-        private RoomTransition _from;
-        private RoomTransition _to;
-        private GameObject _player;
+        private readonly RoomTransition _from;
+        private readonly RoomTransition _to;
+        private readonly GameObject _player;
 
         public RoomTransitionInteraction (RoomTransition from, RoomTransition to, GameObject player) {
             _from = from;

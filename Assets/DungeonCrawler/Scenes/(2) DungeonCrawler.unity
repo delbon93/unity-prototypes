@@ -7103,6 +7103,7 @@ GameObject:
   - component: {fileID: 1322630267}
   - component: {fileID: 1322630266}
   - component: {fileID: 1322630270}
+  - component: {fileID: 1322630272}
   - component: {fileID: 1322630271}
   m_Layer: 0
   m_Name: Ball
@@ -7228,8 +7229,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pushForce: 20000
-  reflectProjectiles: 1
-  reflectedProjectileSpeedFactor: 0.5
 --- !u!114 &1322630271
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7243,6 +7242,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 0}
+--- !u!114 &1322630272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1322630265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aedfcf091c474aa39d3a393637aae7c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reflectedProjectileSpeedFactor: 0.5
 --- !u!1 &1666203305
 GameObject:
   m_ObjectHideFlags: 0

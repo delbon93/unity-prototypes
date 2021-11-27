@@ -33,8 +33,9 @@ namespace DungeonCrawler
         }
 
         private void PointCameraAtAndKeepZ (Vector3 position) {
-            position.z = playerCamera.transform.position.z;
-            playerCamera.transform.position = position;
+            var cameraTransform = playerCamera.transform;
+            position.z = cameraTransform.position.z;
+            cameraTransform.position = position;
         }
     }
 }

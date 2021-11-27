@@ -9,7 +9,7 @@ namespace DungeonCrawler
         [SerializeField] private Grid tilemapGrid;
         [SerializeField] private Transform playerSpawn;
 
-        public Vector3 PlayerSpawnPosition => playerSpawn?.position ?? Vector3.zero;
+        public Vector3 PlayerSpawnPosition => playerSpawn.position;
         
         public void SetRoomVisible (bool visible) {
             tilemapGrid.enabled = visible;
@@ -20,10 +20,10 @@ namespace DungeonCrawler
         }
 
         public void Unload (float timeDelayBeforeUnloading = 0.0f) {
-            StartCoroutine(UnloadCoroutine(timeDelayBeforeUnloading));
+            StartCoroutine(WaitThenUnloadCoroutine(timeDelayBeforeUnloading));
         }
 
-        private IEnumerator UnloadCoroutine (float timeDelayBeforeUnloading) {
+        private IEnumerator WaitThenUnloadCoroutine (float timeDelayBeforeUnloading) {
             yield return new WaitForSeconds(timeDelayBeforeUnloading);
             SetRoomObjectsActiveStatus(false);
         }

@@ -19,38 +19,38 @@ namespace DungeonCrawler
         [SerializeField] private UnityEvent onHealthLost;
         [SerializeField] private UnityEvent onHealthGained;
         
-        
-        
         [Header("Layout")] 
         [SerializeField] private Vector2 centerOffset;
         [SerializeField] private float segmentWidth;
         [SerializeField] private float segmentPadding;
-        
-        
-        private int _currentHealthPoints;
+
+
         private ConsistentCoroutine _showAndThenFadeOutCoroutine;
         private readonly List<HealthBarSegment> _segments = new List<HealthBarSegment>();
 
-        public int HealthPoints {
-            get => _currentHealthPoints;
-            set {
-                var delta = value - _currentHealthPoints;
-                _currentHealthPoints = Mathf.Min(Mathf.Max(0, value), maxHealthPoints);
-                OnHealthPointsValueChanged();
-                if (delta < 0) onHealthLost?.Invoke();
-                else if (delta > 0) onHealthGained?.Invoke();
-            }
-        }
+        public bool IsHealthEmpty => HealthPoints == 0;
+        public int HealthPoints { get; private set; }
 
-        public void SetFullHealth () {
-            HealthPoints = maxHealthPoints;
-        }
-        
         private void Awake () {
             GenerateLayout();
             SetFullHealth();
             _showAndThenFadeOutCoroutine = new ConsistentCoroutine(this);
             SetAllSegmentsSpriteAlpha(0.0f);
+        }
+        
+        public void SetFullHealth () {
+            SetHealthTo(maxHealthPoints);
+        }
+
+        public void SetHealthTo (int health) {
+            ChangeHealthBy(health - HealthPoints);
+        }
+
+        public void ChangeHealthBy (int healthChange) {
+            HealthPoints = Mathf.Min(Mathf.Max(0, HealthPoints + healthChange), maxHealthPoints);
+            OnHealthPointsValueChanged();
+            if (healthChange < 0) onHealthLost?.Invoke();
+            else if (healthChange > 0) onHealthGained?.Invoke();
         }
 
         private void GenerateLayout () {

@@ -8,18 +8,20 @@ namespace DungeonCrawler {
         
         [SerializeField] private float soundPitchVariation;
 
+        private AudioSource _audioSource;
+        
         private float _baseSoundPitch;
 
         protected override bool AutomaticallyDestroyOnHit => true;
         protected override bool ShowTrailParticlesOnStart => true;
 
         private void Awake () {
-            _baseSoundPitch = GetComponent<AudioSource>().pitch;
+            _audioSource = GetComponent<AudioSource>();
+            _baseSoundPitch = _audioSource.pitch;
         }
 
         protected override void OnBeforeParticleHit () {
-            GetComponent<AudioSource>().pitch = _baseSoundPitch 
-                                                * Random.Range(1f - soundPitchVariation, 1f + soundPitchVariation);
+            _audioSource.pitch = _baseSoundPitch * Random.Range(1f - soundPitchVariation, 1f + soundPitchVariation);
         }
 
         protected override void OnParticleHit (GameObject hitObject) { }
