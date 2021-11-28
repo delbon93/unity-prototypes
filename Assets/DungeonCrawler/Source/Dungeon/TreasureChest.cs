@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Util.TemplateCoroutines;
 
 namespace DungeonCrawler
 {
@@ -16,7 +13,7 @@ namespace DungeonCrawler
             GetComponent<AudioSource>()?.Play();
             GetComponent<TreasureChestInteractionProvider>().CanNoLongerBeOpened = true;
 
-            StartCoroutine(new WaitThenExecuteCoroutine(1.5f, CloseChest).Start());
+            Invoke(nameof(CloseChest), 1.5f);
         }
 
         public void CloseChest () {
