@@ -4,20 +4,15 @@ namespace DungeonCrawler {
     public abstract class APlayerInteractionProvider : MonoBehaviour {
         
         protected void OnTriggerEnter2D (Collider2D other) {
-            if (TryGetPlayerInteractionHandler(other.gameObject, out var playerInteractionHandler)) {
-                OnPlayerEntersTrigger(playerInteractionHandler);
+            if (other.gameObject.TryGetComponent(typeof(PlayerInteractionHandler), out var interactionHandler)) {
+                OnPlayerEntersTrigger(interactionHandler as PlayerInteractionHandler);
             }
         }
 
         protected void OnTriggerExit2D (Collider2D other) {
-            if (TryGetPlayerInteractionHandler(other.gameObject, out var playerInteractionHandler)) {
-                OnPlayerLeavesTrigger(playerInteractionHandler);
+            if (other.gameObject.TryGetComponent(typeof(PlayerInteractionHandler), out var interactionHandler)) {
+                OnPlayerLeavesTrigger(interactionHandler as PlayerInteractionHandler);
             }
-        }
-
-        private static bool TryGetPlayerInteractionHandler (GameObject playerGameObject, out PlayerInteractionHandler playerInteractionHandler) {
-            playerInteractionHandler = playerGameObject.GetComponent<PlayerInteractionHandler>();
-            return playerInteractionHandler != null;
         }
 
         protected abstract void OnPlayerEntersTrigger (PlayerInteractionHandler interactionHandler);

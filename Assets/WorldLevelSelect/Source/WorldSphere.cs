@@ -18,7 +18,6 @@ namespace WorldLevelSelect
         
         private List<KingdomSelectItemInfo> _itemInfos;
         private List<LocationMarker> _loadedLocationMarkers;
-        private IEnumerator _currentRotationCoroutine;
         private ConsistentCoroutine _rotationCoroutine;
 
         private void Awake () {
@@ -81,8 +80,6 @@ namespace WorldLevelSelect
                 
                 yield return null;
             }
-
-            _currentRotationCoroutine = null;
         }
         
     }
