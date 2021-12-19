@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using UnityEngine;
 
@@ -9,7 +10,9 @@ namespace DungeonCrawler
         [SerializeField] protected ParticleSystem onDestroyParticleSystem;
         [SerializeField] protected ParticleSystem trailParticleSystem;
 
-        public ProjectileAttributes ProjectileAttributes { get; set; }
+        private ProjectileAttributes _projectileAttributes;
+        
+        public ProjectileAttributes ProjectileAttributes { get => _projectileAttributes; set => _projectileAttributes = value; }
 
         protected abstract bool AutomaticallyDestroyOnHit { get; }
         protected abstract bool ShowTrailParticlesOnStart { get; }
@@ -18,6 +21,10 @@ namespace DungeonCrawler
         private void Start () {
             if (ShowTrailParticlesOnStart)
                 trailParticleSystem.Play();
+        }
+
+        private void FixedUpdate () {
+            _projectileAttributes.RecentVelocity = GetComponent<Rigidbody2D>().velocity;
         }
 
         private void OnTriggerEnter2D (Collider2D other) {

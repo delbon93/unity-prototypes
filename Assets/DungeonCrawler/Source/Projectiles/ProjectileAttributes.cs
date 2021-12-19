@@ -4,6 +4,7 @@ namespace DungeonCrawler {
     public struct ProjectileAttributes {
         
         public Vector2 InitialVelocity;
+        public Vector2 RecentVelocity;
         public float Size;
         public GameObject OriginGameObject;
         public AProjectile Prefab;
