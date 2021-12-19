@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -20,6 +18,7 @@ namespace DungeonCrawler
         private ProjectileSpawner _projectileSpawner;
         private Animator _animator;
         private AudioSource _audioSource;
+        private PlayerAbilityHandler _playerAbilityHandler;
         
         private Vector2 _movementVector;
         private Vector2 _fireProjectileVector;
@@ -27,6 +26,7 @@ namespace DungeonCrawler
         public bool InputEnabled { get; set; } = true;
 
         private void Awake () {
+            _playerAbilityHandler = GetComponent<PlayerAbilityHandler>();
             _rigidbody = GetComponent<Rigidbody2D>();
             _projectileSpawner = GetComponent<ProjectileSpawner>();
             _animator = GetComponent<Animator>();

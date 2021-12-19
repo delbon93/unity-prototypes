@@ -6,6 +6,7 @@ namespace DungeonCrawler {
     [RequireComponent(typeof(AudioSource))]
     public class DefaultProjectile : AProjectile {
         
+        [Header("Default Projectile")]
         [SerializeField] private float soundPitchVariation;
 
         private AudioSource _audioSource;

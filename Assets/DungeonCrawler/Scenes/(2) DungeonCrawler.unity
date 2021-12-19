@@ -7228,6 +7228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebdcdb663a5940d2ae9c3e02f6556b5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactionPriority: 0
   pushForce: 20000
 --- !u!114 &1322630271
 MonoBehaviour:
@@ -7254,6 +7255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aedfcf091c474aa39d3a393637aae7c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactionPriority: 0
   reflectedProjectileSpeedFactor: 0.5
 --- !u!1 &1666203305
 GameObject:
@@ -7519,6 +7521,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac638564cd2329a47ad5587647e43f4f, type: 3}
+--- !u!114 &1995509851 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4548284864245779879, guid: ad2c1e72a61a1374fafcf1ee65132e84, type: 3}
+  m_PrefabInstance: {fileID: 6385230608535255529}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb5bf4cb7f8a4e0fa95ad6866055038c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2026419842 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6242291157626327596, guid: 640a4bd5583cf1d4f9bcd9c71241b005, type: 3}
@@ -7706,6 +7719,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6385230608183085978, guid: ad2c1e72a61a1374fafcf1ee65132e84, type: 3}
+      propertyPath: playerAbility
+      value: 
+      objectReference: {fileID: 11400000, guid: 1225b9b9272d0924a964f5ce454e2de8, type: 2}
     - target: {fileID: 6385230608183085980, guid: ad2c1e72a61a1374fafcf1ee65132e84, type: 3}
       propertyPath: zoomSize
       value: 1.5
@@ -7723,7 +7740,23 @@ PrefabInstance:
       value: 0.08
       objectReference: {fileID: 0}
     - target: {fileID: 6385230608183085981, guid: ad2c1e72a61a1374fafcf1ee65132e84, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6385230608183085981, guid: ad2c1e72a61a1374fafcf1ee65132e84, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_ActionId
+      value: 23a14d87-95a5-41d0-a872-b14644a68dd5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6385230608183085981, guid: ad2c1e72a61a1374fafcf1ee65132e84, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_ActionName
+      value: 2DMovement/PlayerAbility[/Keyboard/space,/XInputControllerWindows/buttonWest]
+      objectReference: {fileID: 0}
+    - target: {fileID: 6385230608183085981, guid: ad2c1e72a61a1374fafcf1ee65132e84, type: 3}
       propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6385230608183085981, guid: ad2c1e72a61a1374fafcf1ee65132e84, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6385230608183085981, guid: ad2c1e72a61a1374fafcf1ee65132e84, type: 3}
@@ -7731,11 +7764,23 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6385230608183085981, guid: ad2c1e72a61a1374fafcf1ee65132e84, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6385230608183085981, guid: ad2c1e72a61a1374fafcf1ee65132e84, type: 3}
       propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 386249338}
     - target: {fileID: 6385230608183085981, guid: ad2c1e72a61a1374fafcf1ee65132e84, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1995509851}
+    - target: {fileID: 6385230608183085981, guid: ad2c1e72a61a1374fafcf1ee65132e84, type: 3}
       propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6385230608183085981, guid: ad2c1e72a61a1374fafcf1ee65132e84, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6385230608183085981, guid: ad2c1e72a61a1374fafcf1ee65132e84, type: 3}
@@ -7743,11 +7788,23 @@ PrefabInstance:
       value: OnPlayerInteractionInput
       objectReference: {fileID: 0}
     - target: {fileID: 6385230608183085981, guid: ad2c1e72a61a1374fafcf1ee65132e84, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnUsePlayerAbility
+      objectReference: {fileID: 0}
+    - target: {fileID: 6385230608183085981, guid: ad2c1e72a61a1374fafcf1ee65132e84, type: 3}
       propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: DungeonCrawler.PlayerInteractionHandler, DungeonCrawler
       objectReference: {fileID: 0}
     - target: {fileID: 6385230608183085981, guid: ad2c1e72a61a1374fafcf1ee65132e84, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DungeonCrawler.PlayerAbilityHandler, DungeonCrawler
+      objectReference: {fileID: 0}
+    - target: {fileID: 6385230608183085981, guid: ad2c1e72a61a1374fafcf1ee65132e84, type: 3}
       propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6385230608183085981, guid: ad2c1e72a61a1374fafcf1ee65132e84, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []

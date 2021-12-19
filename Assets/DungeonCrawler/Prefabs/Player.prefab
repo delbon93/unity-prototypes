@@ -264,6 +264,7 @@ GameObject:
   - component: {fileID: 6385230608183085971}
   - component: {fileID: 3353185896582178780}
   - component: {fileID: 6385230608183085982}
+  - component: {fileID: 4548284864245779879}
   - component: {fileID: 6385230608183085968}
   - component: {fileID: 6385230608183085979}
   - component: {fileID: 6385230608183085977}
@@ -380,9 +381,37 @@ MonoBehaviour:
     m_ActionId: b2f6105b-727c-4e03-877a-84b8542101fe
     m_ActionName: 2DMovement/FireProjectile[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow,/XInputControllerWindows/rightStick]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6385230608183085971}
+        m_TargetAssemblyTypeName: DungeonCrawler.PlayerInteractionHandler, DungeonCrawler
+        m_MethodName: OnPlayerInteractionInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 58fd0bc7-10be-45d9-90d7-c42fa2a5298d
     m_ActionName: 2DMovement/PlayerInteraction[/Keyboard/e,/XInputControllerWindows/buttonNorth]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4548284864245779879}
+        m_TargetAssemblyTypeName: DungeonCrawler.PlayerAbilityHandler, DungeonCrawler
+        m_MethodName: OnUsePlayerAbility
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 23a14d87-95a5-41d0-a872-b14644a68dd5
+    m_ActionName: 2DMovement/PlayerAbility[/Keyboard/space,/XInputControllerWindows/buttonWest]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: WorldLevelSelectControllScheme
   m_DefaultActionMap: 2DMovement
@@ -401,7 +430,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 0}
-  cameraMoveSpeed: 0.15
+  cameraMoveSpeed: 10
 --- !u!114 &6385230608183085971
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -428,9 +457,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 1516209307245882829}
-  onDeath:
+  onBeforeDeath:
     m_PersistentCalls:
       m_Calls: []
+  onAfterDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: DungeonCrawler.DungeonRoomContainer, DungeonCrawler
+        m_MethodName: ResetDungeon
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6385230608183085982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -444,6 +488,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 5506168855135979381, guid: 0cd57f5574209c74ca82413b2eef2479, type: 3}
+--- !u!114 &4548284864245779879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6385230608183085958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb5bf4cb7f8a4e0fa95ad6866055038c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerAbility: {fileID: 11400000, guid: 1225b9b9272d0924a964f5ce454e2de8, type: 2}
 --- !u!114 &6385230608183085968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -456,6 +513,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6200aef648944c284377eb4447d0f59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactionPriority: 0
   healthBar: {fileID: 1516209307245882829}
   onHealthReachesZero:
     m_PersistentCalls:
