@@ -2,17 +2,20 @@
 using System.Collections;
 using DungeonCrawler.Abilities;
 using UnityEngine;
+using UnityEngine.Animations;
 using UnityEngine.InputSystem;
 
 namespace DungeonCrawler {
     public class PlayerAbilityHandler : MonoBehaviour {
 
-        [SerializeField] private SpriteRenderer cooldownTimerSprite;
+        [SerializeField] private RectTransform cooldownTimerSprite;
         [SerializeField] private APlayerAbility playerAbility;
         
         private bool _playerAbilityReady = true;
+        private float _cooldownTimerInitialWidth;
 
         private void Awake () {
+            _cooldownTimerInitialWidth = cooldownTimerSprite.rect.width;
             SetSpriteScale(0);
         }
 
@@ -39,9 +42,8 @@ namespace DungeonCrawler {
         }
 
         private void SetSpriteScale (float scale) {
-            var localScale = cooldownTimerSprite.transform.localScale;
-            localScale.x = scale;
-            cooldownTimerSprite.transform.localScale = localScale;
+            cooldownTimerSprite.sizeDelta =
+                new Vector2(_cooldownTimerInitialWidth * scale, cooldownTimerSprite.sizeDelta.y);
         }
 
         public void OnUsePlayerAbility (InputAction.CallbackContext context) {
